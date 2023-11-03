@@ -1,0 +1,9 @@
+func %v_Update(txt *server.Transaction, entity *entities.%v) error {
+	queryText := `%v`
+	query := database.NewWriteQuery(txt.Context, database.ValidateAffectedCountEqual(1), queryText,
+		%v)
+
+	err := query.Submit()
+
+	return err
+}

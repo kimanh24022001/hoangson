@@ -1,0 +1,13 @@
+func %v_BatchInsert(txt *server.Transaction, list []entities.%v) []error {
+     l := len(list)
+
+     queryText := `%v`
+     queries := database.NewQueries(txt.Context, l)
+     for _, entity := range list {
+          queries.AddWriteQuery(database.ValidateAffectedCountEqual(1), queryText,
+               	%v)
+     }
+     errs := queries.Submit()
+
+     return errs
+}
